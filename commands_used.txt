@@ -1,0 +1,16 @@
+export PATH=${PWD}/../bin:$PATH
+
+cryptogen generate --config=./organizations/cryptogen/crypto-config-orderer.yaml --output="organizations"
+cryptogen generate --config=./organizations/cryptogen/crypto-config-consumer.yaml --output="organizations"
+cryptogen generate --config=./organizations/cryptogen/crypto-config-distributor.yaml --output="organizations"
+cryptogen generate --config=./organizations/cryptogen/crypto-config-manufacturer.yaml --output="organizations"
+cryptogen generate --config=./organizations/cryptogen/crypto-config-retailer.yaml --output="organizations"
+cryptogen generate --config=./organizations/cryptogen/crypto-config-transporter.yaml --output="organizations"
+
+
+export FABRIC_CFG_PATH=${PWD}/configtx
+configtxgen -profile PharmaOrdererGenesis -channelID system-channel -outputBlock ./system-genesis-block/genesis.block
+
+
+
+
